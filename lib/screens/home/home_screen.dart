@@ -168,27 +168,27 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: 0,
-        onDestinationSelected: (index) {},
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.flag_outlined),
-            selectedIcon: Icon(Icons.flag),
-            label: 'Goals',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.account_balance_outlined),
-            selectedIcon: Icon(Icons.account_balance),
-            label: 'Deposits',
-          ),
-        ],
-      ),
+      // bottomNavigationBar: NavigationBar(
+      //   selectedIndex: 0,
+      //   onDestinationSelected: (index) {},
+      //   destinations: const [
+      //     NavigationDestination(
+      //       icon: Icon(Icons.home_outlined),
+      //       selectedIcon: Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.flag_outlined),
+      //       selectedIcon: Icon(Icons.flag),
+      //       label: 'Goals',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.account_balance_outlined),
+      //       selectedIcon: Icon(Icons.account_balance),
+      //       label: 'Deposits',
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
