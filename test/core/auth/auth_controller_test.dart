@@ -35,7 +35,7 @@ void main() {
       final store = FakeAuthSessionStore();
       final controller = AuthController(sessionStore: store);
 
-      await controller.login();
+      await controller.login(username: '1', password: '1');
 
       expect(controller.isAuthenticated, isTrue);
       expect(store.authenticated, isTrue);
@@ -45,9 +45,22 @@ void main() {
       final store = FakeAuthSessionStore();
       final controller = AuthController(sessionStore: store);
 
-      await controller.login();
+      await controller.login(username: '1', password: '1');
       await controller.logout();
 
+      expect(controller.isAuthenticated, isFalse);
+      expect(store.authenticated, isFalse);
+    });
+    test('invalid credentials do not authenticate', () async {
+      final store = FakeAuthSessionStore();
+      final controller = AuthController(sessionStore: store);
+
+      final success = await controller.login(
+        username: 'wrong',
+        password: 'wrong',
+      );
+
+      expect(success, isFalse);
       expect(controller.isAuthenticated, isFalse);
       expect(store.authenticated, isFalse);
     });
