@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//import '../core/auth/auth_controller.dart';
+import '../core/auth/session_initializer.dart';
 import 'router.dart';
 import 'theme.dart';
 
@@ -12,15 +12,17 @@ class SaveSmartApp extends StatefulWidget {
 }
 
 class _SaveSmartAppState extends State<SaveSmartApp> {
+  final SessionInitializer _sessionInitializer = const SessionInitializer();
+
   @override
   void initState() {
     super.initState();
 
-    _restoreSession();
+    _initializeSession();
   }
 
-  Future<void> _restoreSession() async {
-    await authController.restoreSession();
+  Future<void> _initializeSession() async {
+    await _sessionInitializer.initialize(authController);
   }
 
   @override
