@@ -3,35 +3,48 @@ import 'package:go_router/go_router.dart';
 import '../core/auth/auth_controller.dart';
 import '../screens/auth/login_screen.dart';
 import '../screens/home/home_screen.dart';
+import '../screens/startup/splash_screen.dart';
 import 'routes.dart';
 
 final authController = AuthController();
 
 final appRouter = GoRouter(
-  initialLocation: AppRoutes.login,
+  initialLocation: AppRoutes.splash,
 
   refreshListenable: authController,
 
   redirect: (context, state) {
     final authState = authController.state;
-    final isOnLogin = state.matchedLocation == AppRoutes.login;
+    final location = state.matchedLocation;
 
     if (authState.isInitializing) {
+      if (location != AppRoutes.splash) {
+        return AppRoutes.splash;
+      }
+
       return null;
     }
 
-    if (!authState.isAuthenticated && !isOnLogin) {
-      return AppRoutes.login;
+    if (authState.isAuthenticated) {
+      if (location == AppRoutes.splash || location == AppRoutes.login) {
+        return AppRoutes.home;
+      }
+
+      return null;
     }
 
-    if (authState.isAuthenticated && isOnLogin) {
-      return AppRoutes.home;
+    if (location == AppRoutes.splash || location != AppRoutes.login) {
+      return AppRoutes.login;
     }
 
     return null;
   },
 
   routes: [
+    GoRoute(
+      path: AppRoutes.splash,
+      builder: (context, state) => const SplashScreen(),
+    ),
     GoRoute(
       path: AppRoutes.login,
       builder: (context, state) => const LoginScreen(),
