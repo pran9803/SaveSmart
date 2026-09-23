@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../app/router.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -7,14 +9,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Good morning, Pranaya',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: const Text('Good morning, Pranaya'),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications_outlined),
+            icon: const Icon(Icons.notifications_none),
+          ),
+          IconButton(
+            onPressed: () async {
+              await authController.logout();
+            },
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
           ),
         ],
       ),
