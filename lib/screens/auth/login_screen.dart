@@ -22,8 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _login() {
-    authController.login();
+  Future<void> _login() async {
+    await authController.login();
   }
 
   @override
