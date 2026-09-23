@@ -1,0 +1,17 @@
+enum AuthStatus { initializing, unauthenticated, authenticated }
+
+class AuthState {
+  final AuthStatus status;
+
+  const AuthState({required this.status});
+
+  const AuthState.initializing() : status = AuthStatus.initializing;
+
+  const AuthState.unauthenticated() : status = AuthStatus.unauthenticated;
+
+  const AuthState.authenticated() : status = AuthStatus.authenticated;
+
+  bool get isInitializing => status == AuthStatus.initializing;
+
+  bool get isAuthenticated => status == AuthStatus.authenticated;
+}
