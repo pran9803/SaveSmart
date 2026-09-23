@@ -13,14 +13,18 @@ final appRouter = GoRouter(
   refreshListenable: authController,
 
   redirect: (context, state) {
-    final isLoggedIn = authController.isAuthenticated;
+    final authState = authController.state;
     final isOnLogin = state.matchedLocation == AppRoutes.login;
 
-    if (!isLoggedIn && !isOnLogin) {
+    if (authState.isInitializing) {
+      return null;
+    }
+
+    if (!authState.isAuthenticated && !isOnLogin) {
       return AppRoutes.login;
     }
 
-    if (isLoggedIn && isOnLogin) {
+    if (authState.isAuthenticated && isOnLogin) {
       return AppRoutes.home;
     }
 

@@ -9,7 +9,7 @@ class AuthController extends ChangeNotifier {
 
   final AuthSessionStore _sessionStore;
 
-  AuthState _state = const AuthState.unauthenticated();
+  AuthState _state = const AuthState.initializing();
 
   AuthState get state => _state;
 
