@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../app/router.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -21,10 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login() {
-    // Authentication will be connected to the backend later.
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Authentication will be connected next.')),
-    );
+    authController.login();
   }
 
   @override
