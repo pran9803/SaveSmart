@@ -1,9 +1,10 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/goals/presentation/new_goal_screen.dart';
 import '../core/auth/auth_controller.dart';
 import '../screens/auth/login_screen.dart';
 import '../screens/deposits/deposits_screen.dart';
-import '../screens/goals/goals_screen.dart';
+import '../features/goals/presentation/goals_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/startup/splash_screen.dart';
 import 'app_shell.dart';
@@ -56,9 +57,27 @@ final appRouter = GoRouter(
 
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return AppShell(navigationShell: navigationShell);
+        return AppShell(
+          navigationShell: navigationShell,
+          location: state.matchedLocation,
+        );
       },
       branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.goals,
+              builder: (context, state) => const GoalsScreen(),
+              routes: [
+                GoRoute(
+                  path: 'new',
+                  builder: (context, state) => const NewGoalScreen(),
+                ),
+              ],
+            ),
+          ],
+        ),
+
         StatefulShellBranch(
           routes: [
             GoRoute(

@@ -2,9 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppShell extends StatelessWidget {
-  const AppShell({required this.navigationShell, super.key});
+  const AppShell({
+    required this.navigationShell,
+    required this.location,
+    super.key,
+  });
 
   final StatefulNavigationShell navigationShell;
+  final String location;
+
+  int get _selectedIndex {
+    if (location.startsWith('/goals')) {
+      return 1;
+    }
+
+    if (location.startsWith('/deposits')) {
+      return 2;
+    }
+
+    return 0;
+  }
 
   void _onDestinationSelected(int index) {
     navigationShell.goBranch(
@@ -18,7 +35,7 @@ class AppShell extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
-        selectedIndex: navigationShell.currentIndex,
+        selectedIndex: _selectedIndex,
         onDestinationSelected: _onDestinationSelected,
         destinations: const [
           NavigationDestination(

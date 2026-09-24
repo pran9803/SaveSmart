@@ -4,5 +4,6 @@ class AppRoutes {
 
   static const home = '/home';
   static const goals = '/goals';
+  static const newGoal = '/goals/new';
   static const deposits = '/deposits';
 }
